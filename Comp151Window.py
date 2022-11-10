@@ -1,4 +1,5 @@
 import arcade
+import random
 
 class Comp151Window(arcade.Window):
     def __init__(self, width, height):
@@ -9,10 +10,11 @@ class Comp151Window(arcade.Window):
 
     def setup(self):
         self.player = arcade.Sprite("f1-ship1-6.png")
-        rock = arcade.Sprite(":resources:images/space_shooter/meteorGrey_med1.png")
-        self.targets.append(rock)
-        rock.center_y = 500
-        rock.center_x = 700
+        for number in range(5):
+            rock = arcade.Sprite(":resources:images/space_shooter/meteorGrey_med1.png")
+            self.targets.append(rock)
+            rock.center_y = random.randint(16,984)
+            rock.center_x = random.randint(16, 1184)
         self.player.center_x = 200
         self.player.center_y = 500
 
