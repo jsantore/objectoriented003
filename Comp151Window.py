@@ -7,8 +7,10 @@ class Comp151Window(arcade.Window):
         self.player =None
         self.targets = arcade.SpriteList()
         self.score = 0
+        self.sound = None
 
     def setup(self):
+        self.sound = arcade.load_sound("elec_lightning.wav")
         self.player = arcade.Sprite("f1-ship1-6.png")
         for number in range(5):
             rock = arcade.Sprite(":resources:images/space_shooter/meteorGrey_med1.png")
@@ -22,6 +24,7 @@ class Comp151Window(arcade.Window):
         self.player.center_x+= 3
         if self.player.center_x > 1200:
             self.player.center_x = 0
+            arcade.play_sound(self.sound)
 
     def on_draw(self):
         arcade.start_render()
