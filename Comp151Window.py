@@ -34,9 +34,9 @@ class Comp151Window(arcade.Window):
         arcade.finish_render()
 
     def on_key_press(self, symbol, modifiers):
-        if symbol == arcade.key.RIGHT:
+        if symbol == arcade.key.RIGHT or symbol == arcade.key.D:
             self.player_dx = 3
-        elif symbol == arcade.key.LEFT:
+        elif symbol == arcade.key.LEFT or symbol == arcade.key.A:
             self.player_dx = -3
 
     def on_key_release(self, symbol, modifiers):
