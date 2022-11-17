@@ -20,7 +20,12 @@ class ShipGoldWindow(arcade.Window):
             self.goals.append(gold)
 
     def on_update(self, delta_time):
-        pass
+        gold_piles_collected =  arcade.check_for_collision_with_list(self.ship,self.goals)
+        if gold_piles_collected:
+            arcade.play_sound(self.sound)
+            self.score += len(gold_piles_collected)
+            for gold in gold_piles_collected:
+                self.goals.remove(gold)
 
     def on_draw(self):
         arcade.start_render()
