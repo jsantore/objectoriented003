@@ -9,10 +9,12 @@ class ShipGoldWindow(arcade.Window):
         self.goals = arcade.SpriteList()
         self.score =0
         self.sound = None
+        self.throw_sound = None
 
     def setup(self):
         self.ship = arcade.Sprite("pirate-galleon.png")
         self.sound = arcade.load_sound(":resources:sounds/coin2.wav")
+        self.throw_sound = arcade.load_sound(":resources:sounds/lose2.wav")
         for number in range(7):
             gold = arcade.Sprite("gold-coins-large.png")
             gold.center_x = random.randint(30, 1170)
@@ -36,3 +38,10 @@ class ShipGoldWindow(arcade.Window):
     def on_mouse_motion(self, x, y, dx, dy):
         self.ship.center_x = x
         self.ship.center_y = y
+
+    def on_mouse_press(self, x, y, button, modifiers):
+        pile = arcade.Sprite("gold-coins-large.png")
+        pile.center_x = self.ship.center_x
+        pile.center_y = self.ship.center_y - 74
+        self.goals.append(pile)
+        arcade.play_sound(self.throw_sound)
