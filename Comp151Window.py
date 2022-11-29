@@ -22,6 +22,10 @@ class Comp151Window(arcade.Window):
         self.player.center_y = 500
 
     def on_update(self, delta_time):
+        for rock in self.targets:
+            rock.center_x -= 3
+            if rock.center_x< 0:
+                rock.center_x = 1184
         self.player.center_x+= self.player_dx
         if self.player.center_x > 1200:
             self.player.center_x = 0
