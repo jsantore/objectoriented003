@@ -28,11 +28,14 @@ class ShipGoldWindow(arcade.Window):
             self.score += len(gold_piles_collected)
             for gold in gold_piles_collected:
                 self.goals.remove(gold)
+                self.score+=1
 
     def on_draw(self):
         arcade.start_render()
         self.ship.draw()
         self.goals.draw()
+        score_text = arcade.Text(f"Score {self.score}", 20, 900, arcade.color.RUBY_RED, font_size=18)
+        score_text.draw()
         arcade.finish_render()
 
     def on_mouse_motion(self, x, y, dx, dy):
@@ -45,3 +48,4 @@ class ShipGoldWindow(arcade.Window):
         pile.center_y = self.ship.center_y - 74
         self.goals.append(pile)
         arcade.play_sound(self.throw_sound)
+        self.score -= 1
